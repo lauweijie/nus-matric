@@ -59,9 +59,17 @@ body {
   border-color: #dFb5b4;
 }
 
+.bs-callout-danger h4 {
+  color: #b94a48;
+}
+
 .bs-callout-warning {
   background-color: #fefbed;
   border-color: #f1e7bc;
+}
+
+.bs-callout-warning h4 {
+  color: #c09853;
 }
 
 .bs-callout-info {
@@ -69,9 +77,17 @@ body {
   border-color: #d0e3f0;
 }
 
+.bs-callout-info h4 {
+  color: #3a87ad;
+}
+
 .bs-callout-success {
   background-color: #f3ffe8;
   border-color: #e0f2c2;
+}
+
+.bs-callout-success h4 {
+  color: #53ad3a;
 }
 
 .container .credit {
