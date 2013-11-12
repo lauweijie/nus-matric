@@ -9,7 +9,7 @@ http://lauweijie.github.io/nus-matric/
 Include script *after* the jQuery library (unless you are packaging scripts somehow else):
 
 ```html
-<script src="/path/to/jquery.nus-matric.js"></script>
+<script src="/path/to/jquery.nusmatric.js"></script>
 ```
 
 ## Usage
