@@ -1,0 +1,81 @@
+html,
+body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}
+
+#footer {
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+#footer p {
+  float: left;
+}
+
+#footer .github {
+  float: right;
+  margin-top: 22px;
+}
+
+.container {
+  width: auto;
+  max-width: 850px;
+  padding: 0 15px;
+}
+
+.bs-callout {
+  margin: 20px 0;
+  padding: 15px 30px 15px 15px;
+  border-left: 5px solid #eee;
+}
+
+.bs-callout h4 {
+  margin-top: 0;
+}
+
+.bs-callout h4 .glyphicon {
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.bs-callout code,
+.bs-callout .highlight {
+  background-color: #fff;
+}
+
+.bs-callout-danger {
+  background-color: #fcf2f2;
+  border-color: #dFb5b4;
+}
+
+.bs-callout-warning {
+  background-color: #fefbed;
+  border-color: #f1e7bc;
+}
+
+.bs-callout-info {
+  background-color: #f0f7fd;
+  border-color: #d0e3f0;
+}
+
+.bs-callout-success {
+  background-color: #f3ffe8;
+  border-color: #e0f2c2;
+}
+
+.container .credit {
+  margin: 20px 0;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }

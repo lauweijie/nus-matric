@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jonathan Lau">
+    <link rel="shortcut icon" href="ico/favicon.ico">
+
+    <title>NUS Matric Number</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  
+    <div id="wrap">
+
+      <div class="container">
+        <div class="page-header">
+          <h1>NUS Matric Number</h1>
+        </div>
+        <p class="lead">Enter a NUSNET ID or matric number into the input box below...</p>
+        <form role="form">
+          <input id="matric" type="text" class="form-control" placeholder="A0123456X / U012345X">
+        </form>
+        <div id="status">
+          <div id="valid" class="bs-callout bs-callout-success" style="display:none;">
+            <h4><span class="glyphicon glyphicon-ok-sign"></span> Valid Matric Number</h4>
+            <p><code class="status-matric"></code> is a valid NUS matriculation number.</p>
+          </div>
+          <div id="invalid" class="bs-callout bs-callout-warning" style="display:none;">
+            <h4><span class="glyphicon glyphicon-minus-sign"></span> Invalid Matric Number</h4>
+            <p><code class="status-matric"></code> is an invalid NUS matriculation number. The last letter of the matric number should have been an <code class="status-lastletter"></code>.</p>
+          </div>
+          <div id="error" class="bs-callout bs-callout-danger" style="display:none;">
+            <h4><span class="glyphicon glyphicon-minus-sign"></span> Invalid Matric Number</h4>
+            <p><code class="status-matric"></code> is an invalid NUS matriculation number.</p>
+          </div>
+          <div id="info" class="bs-callout bs-callout-info" style="display:none;">
+            <h4><span class="glyphicon glyphicon-asterisk"></span> Matric Number Checksum: <span class="status-lastletter"></span></h4>
+            <p>Based on the NUSNET ID entered, the matric number should be <code><span class="status-matric"></span><span class="status-lastletter"></span></code>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">Built by <a href="http://jon.sg/">Jonathan Lau</a>.</p>
+        <div class="github">
+          <iframe src="http://ghbtns.com/github-btn.html?user=lauweijie&repo=nus-matric&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+          <iframe src="http://ghbtns.com/github-btn.html?user=lauweijie&repo=nus-matric&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-2.0.3.js"></script>
+    <script src="../jquery.nusmatric.js"></script>
+    <script>
+      $(function() {
+        $('#matric').bind('keyup change click', function() {
+          var matric = $('#matric').val().toUpperCase().trim();
+          if(history.replaceState) {
+            if ( matric != '' ) {
+              history.replaceState('', '', '?q=' + encodeURIComponent(matric.toLowerCase()));
+            } else {
+              history.replaceState('', '', location.href.split('?')[0]);
+            }
+          }
+          $('.status-matric').text(matric).html();
+          $('#status div').hide();
+          switch( $.nusmatric.getFormatType(matric) ) {
+            case 0:
+              $('#error').show();
+              break;
+            case 1:
+              if( $.nusmatric.isValid(matric) ) {
+                $('#valid').show();
+              } else {
+                $('.status-lastletter').html( $.nusmatric.getCheckCode(matric) );
+                $('#invalid').show();
+              }
+              break;
+            case 2:
+              $('.status-lastletter').html( $.nusmatric.getCheckCode(matric) );
+              $('#info').show();
+              break;
+          }
+        });
+        var query = /[\\?&]q=([^&#]*)/.exec(location.search);
+        $('#matric').val(( query == null ? "" : decodeURIComponent(query[1].replace(/\+/g, " ")) ).toUpperCase());
+        $('#matric').trigger('change');
+      });
+    </script>
+  </body>
+</html>
